@@ -33,7 +33,7 @@ export function useGlobeScroll(stateRef: MutableRefObject<GlobeState>) {
         trigger: '#pin-wrap',
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 3.5,
+        scrub: 1.2,
       }
     })
 
@@ -55,7 +55,7 @@ export function useGlobeScroll(stateRef: MutableRefObject<GlobeState>) {
             trigger: '#pin-wrap',
             start: `${(i/9*100).toFixed(1)}% top`,
             end: `${((i+.38)/9*100).toFixed(1)}% top`,
-            scrub: 1.4,
+            scrub: 0.5,
           }
         }
       )
@@ -67,7 +67,7 @@ export function useGlobeScroll(stateRef: MutableRefObject<GlobeState>) {
             trigger: '#pin-wrap',
             start: `${((i+.62)/9*100).toFixed(1)}% top`,
             end: `${((i+1)/9*100).toFixed(1)}% top`,
-            scrub: 1.4,
+            scrub: 0.5,
           }
         }
       )

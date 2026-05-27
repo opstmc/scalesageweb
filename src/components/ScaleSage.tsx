@@ -176,12 +176,16 @@ function CaseStudiesCarousel() {
   )
 }
 
-function Chapter({ id, top, align = 'left', children }: { id: string; top: string; align?: 'left'|'right'|'center'; children: React.ReactNode }) {
+function Chapter({ id, top, align = 'left', tall, children }: { id: string; top: string; align?: 'left'|'right'|'center'; tall?: boolean; children: React.ReactNode }) {
   const justify = align === 'right' ? 'justify-end' : align === 'center' ? 'justify-center' : 'justify-start'
   const isCenter = align === 'center'
   return (
-    <section id={id} className={`${chapterBase} ${justify}`} style={{ top }}>
-      <div className={`ch-content px-8 md:px-16 ${isCenter ? 'max-w-4xl mx-auto text-center flex flex-col items-center justify-center' : 'max-w-xl'}`}>
+    <section
+      id={id}
+      className={`${chapterBase} ${justify}`}
+      style={{ top, alignItems: tall ? 'flex-start' : 'center', paddingTop: tall ? '8vh' : 0, paddingBottom: tall ? '4vh' : 0 }}
+    >
+      <div className={`ch-content px-8 md:px-16 ${isCenter ? 'max-w-4xl mx-auto text-center flex flex-col items-center' : 'max-w-xl'}`}>
         {children}
       </div>
     </section>
@@ -205,15 +209,17 @@ export default function ScaleSage() {
       <GlobeCanvas stateRef={globeState} />
 
       {/* Nav */}
-      <header className="fixed top-0 left-0 w-full z-50 px-8 md:px-16 py-6 flex items-center justify-between">
-        <div className="logo text-xl font-bold tracking-tight text-fog">ScaleSage</div>
-        <nav className="hidden md:flex gap-8 text-sm text-fog/70">
-          <a href="#ch1" className="hover:text-teal transition">Diagnose</a>
-          <a href="#ch2" className="hover:text-teal transition">Build</a>
-          <a href="#ch3" className="hover:text-teal transition">Prove</a>
-          <a href="#ch5" className="hover:text-teal transition">Pricing</a>
+      <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between"
+        style={{ padding: '1.25rem 2rem', background: 'linear-gradient(to bottom, rgba(11,29,58,0.85) 0%, transparent 100%)', backdropFilter: 'blur(0px)' }}
+      >
+        <a href="/" className="logo text-xl font-bold tracking-tight text-fog" style={{ textDecoration: 'none' }}>ScaleSage</a>
+        <nav className="hidden md:flex gap-8 text-sm" style={{ color: 'rgba(241,245,249,0.65)' }}>
+          <a href="#ch1" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color='#00E5C3')} onMouseLeave={e => (e.currentTarget.style.color='inherit')}>Diagnose</a>
+          <a href="#ch2" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color='#00E5C3')} onMouseLeave={e => (e.currentTarget.style.color='inherit')}>Build</a>
+          <a href="#ch3" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color='#00E5C3')} onMouseLeave={e => (e.currentTarget.style.color='inherit')}>Prove</a>
+          <a href="#ch5" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color='#00E5C3')} onMouseLeave={e => (e.currentTarget.style.color='inherit')}>Pricing</a>
         </nav>
-        <Link to="/diagnostic" className="nav-btn">Begin</Link>
+        <Link to="/diagnostic" className="nav-btn" style={{ fontSize: '0.8rem', padding: '0.45rem 1rem' }}>Run Diagnostic →</Link>
       </header>
 
       {/* Scroll container */}
@@ -344,7 +350,7 @@ export default function ScaleSage() {
           </blockquote>
         </Chapter>
 
-        <Chapter id="ch4" top="288vh" align="center">
+        <Chapter id="ch4" top="288vh" align="center" tall>
           <p className="eyebrow mb-6">Results</p>
           <h2 className="ch-word text-5xl md:text-6xl mb-4">
             Real businesses. <span className="accent-teal">Real numbers.</span>
@@ -356,7 +362,7 @@ export default function ScaleSage() {
           <CaseStudiesCarousel />
         </Chapter>
 
-        <Chapter id="ch5" top="360vh" align="center">
+        <Chapter id="ch5" top="360vh" align="center" tall>
           <p className="eyebrow mb-6">TRANSPARENT PRICING · NO SURPRISES</p>
           <h2 className="ch-word text-5xl md:text-6xl mb-4">
             Built for <span className="accent-teal">operators.</span>
@@ -364,7 +370,7 @@ export default function ScaleSage() {
           <p className="pricing-tagline mb-10">
             No lock-in. No setup fees. Cancel anytime.
           </p>
-          <div className="grid md:grid-cols-3 gap-4 text-left items-center">
+          <div className="grid md:grid-cols-3 gap-4 text-left items-center w-full max-w-4xl">
             {[
               { name: 'Starter', setup: '£297', price: '£97/mo', notes: ['Missed call recovery', 'Lead capture', 'Review automation', 'Basic dashboard'] },
               { name: 'Professional', setup: '£597', price: '£197/mo', notes: ['Everything in Starter', 'Appointment booking', 'Quote follow-up', 'Pipeline management', 'Bi-weekly check-ins'], featured: true },
@@ -372,7 +378,7 @@ export default function ScaleSage() {
             ].map(p => (
               <div
                 key={p.name}
-                className={`rounded-xl p-6 backdrop-blur border ${p.featured ? 'border-teal/50 bg-teal/5 pricing-card-featured' : 'border-fog/10 bg-navy3/60'}`}
+                className={`rounded-xl p-6 backdrop-blur border flex flex-col ${p.featured ? 'border-teal/50 bg-teal/5' : 'border-fog/10 bg-navy3/60'}`}
                 style={p.featured ? { transform: 'scale(1.06)', border: '1px solid rgba(0,229,195,0.5)', zIndex: 10 } : {}}
               >
                 <div className="eyebrow">{p.name}</div>
@@ -383,9 +389,16 @@ export default function ScaleSage() {
                 >
                   {p.price}
                 </div>
-                <ul className="mt-4 space-y-2 text-sm text-fog/70">
+                <ul className="mt-4 space-y-2 text-sm text-fog/70 flex-1">
                   {p.notes.map(n => <li key={n}>— {n}</li>)}
                 </ul>
+                <Link
+                  to="/diagnostic"
+                  className={p.featured ? 'btn-primary' : 'btn-secondary'}
+                  style={{ display: 'block', textAlign: 'center', marginTop: '1.5rem', fontSize: '0.8rem', padding: '0.65rem 1rem' }}
+                >
+                  Start Diagnostic →
+                </Link>
               </div>
             ))}
           </div>
@@ -394,7 +407,7 @@ export default function ScaleSage() {
           </p>
         </Chapter>
 
-        <Chapter id="ch6" top="432vh" align="center">
+        <Chapter id="ch6" top="432vh" align="center" tall>
           <p className="eyebrow mb-6">Questions</p>
           <h2 className="ch-word text-5xl md:text-6xl mb-4">
             Questions worth <span className="accent-teal">answering up front.</span>
@@ -418,7 +431,7 @@ export default function ScaleSage() {
           </Link>
         </Chapter>
 
-        <Chapter id="ch8" top="576vh" align="center">
+        <Chapter id="ch8" top="576vh" align="center" tall>
           <div className="w-full">
             <div className="grid md:grid-cols-4 gap-12 text-left text-sm">
               <div>

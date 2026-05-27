@@ -51,12 +51,21 @@
 
 @layer base {
   * { border-color: var(--color-border); }
+
+  html {
+    overflow-x: hidden;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
   html, body {
     background-color: #0B1D3A;
     color: #F1F5F9;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
   }
 
   body, #root {
@@ -103,6 +112,17 @@
 .accent-blue { color: #146CFF; font-style: normal; font-weight: 700; }
 .accent-white { color: #FFFFFF; font-style: normal; font-weight: 700; }
 
+/* GPU compositing hints */
+.ch-content {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#pin-wrap {
+  isolation: isolate;
+}
+
 /* Eyebrow */
 .eyebrow {
   font-family: 'Inter', sans-serif;
@@ -124,12 +144,18 @@
   border-radius: 6px;
   border: none;
   box-shadow: 0 0 20px rgba(0, 229, 195, 0.25);
-  transition: box-shadow 0.3s, transform 0.2s;
+  transition: box-shadow 0.2s, transform 0.15s;
   display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
 }
 .btn-primary:hover {
-  box-shadow: 0 0 32px rgba(0, 229, 195, 0.4);
+  box-shadow: 0 0 28px rgba(0, 229, 195, 0.45);
   transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
 }
 .btn-secondary {
   background: transparent;
@@ -140,8 +166,11 @@
   border: 1px solid rgba(241, 245, 249, 0.2);
   padding: 0.75rem 1.8rem;
   border-radius: 6px;
-  transition: border-color 0.3s, background 0.3s;
+  transition: border-color 0.2s, background 0.2s;
   display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
 }
 .btn-secondary:hover {
   border-color: rgba(241, 245, 249, 0.45);
