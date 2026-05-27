@@ -53,7 +53,6 @@
   * { border-color: var(--color-border); }
 
   html {
-    overflow-x: hidden;
     text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
   }
@@ -64,7 +63,6 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
     overscroll-behavior-y: none;
   }
 
