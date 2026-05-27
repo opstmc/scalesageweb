@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react'
+import { Link } from '@tanstack/react-router'
 import { GlobeCanvas } from './GlobeCanvas'
 import { DataNetwork } from './DataNetwork'
-
-
 import { useGlobeScroll, GlobeState } from '@/hooks/useGlobeScroll'
 
 const chapterBase = "absolute left-0 w-full h-screen flex items-center"
@@ -147,7 +146,7 @@ function CaseStudiesCarousel() {
               <div className="cs-open-icon">+</div>
               <h3>Could this be you?</h3>
               <p>We're selecting 3 businesses for our founding case study programme. Full build. Real results. Your story on this page.</p>
-              <a href="#ch7" className="btn-primary">Apply for a Pilot Spot →</a>
+              <Link to="/diagnostic" className="btn-primary">Apply for a Pilot Spot →</Link>
               <div className="cs-footer" style={{ justifyContent: 'center' }}>
                 <span className="cs-pill teal">1 spot remaining</span>
               </div>
@@ -214,7 +213,7 @@ export default function ScaleSage() {
           <a href="#ch3" className="hover:text-teal transition">Prove</a>
           <a href="#ch5" className="hover:text-teal transition">Pricing</a>
         </nav>
-        <a href="#ch7" className="nav-btn">Begin</a>
+        <Link to="/diagnostic" className="nav-btn">Begin</Link>
       </header>
 
       {/* Scroll container */}
@@ -233,8 +232,8 @@ export default function ScaleSage() {
           <p className="text-fog/70 text-lg mb-10 max-w-md">
             Missed calls. Cold quotes. Forgotten reviews. We find the gaps, plug them, and prove the lift in 90 days.
           </p>
-          <div className="flex gap-4">
-            <a href="#ch1" className="btn-primary">Find My Leaks</a>
+          <div className="flex gap-4 flex-wrap">
+            <Link to="/diagnostic" className="btn-primary">Run My Diagnostic →</Link>
             <a href="#ch5" className="btn-secondary">See Pricing</a>
           </div>
         </Chapter>
@@ -244,10 +243,10 @@ export default function ScaleSage() {
           <h2 className="ch-word text-5xl md:text-6xl mb-6">
             The <span className="accent-teal">Catalyst</span> Diagnostic.
           </h2>
-          <p className="text-fog/70 mb-8">
-            A 30-point audit of every revenue surface — booking flows, response times, review velocity, AI visibility, pipeline gaps.
+          <p className="text-fog/70 mb-6">
+            4 minutes. Scored 0–100 across response speed, visibility, systems, and revenue recovery. Your results — including a live AI search scan — within 24 hours.
           </p>
-          <div className="border border-fog/10 bg-navy3/70 backdrop-blur rounded-xl p-6">
+          <div className="border border-fog/10 bg-navy3/70 backdrop-blur rounded-xl p-6 mb-6">
             <div className="flex items-center justify-between mb-4">
               <span className="eyebrow">Sample Report</span>
               <span className="text-teal text-sm font-medium">Score 64/100</span>
@@ -266,6 +265,7 @@ export default function ScaleSage() {
               ))}
             </div>
           </div>
+          <Link to="/diagnostic" className="btn-primary">Start My Diagnostic →</Link>
         </Chapter>
 
         <Chapter id="ch2" top="144vh" align="right">
@@ -413,9 +413,9 @@ export default function ScaleSage() {
             <span style={{ color: '#F1F5F9', display: 'block' }}>Start</span>
             <span style={{ color: '#146CFF', display: 'block' }}>compounding.</span>
           </h2>
-          <a href="mailto:hello@scalesage.co" className="btn-primary !text-base !px-8 !py-4">
-            Book the Diagnostic →
-          </a>
+          <Link to="/diagnostic" className="btn-primary !text-base !px-8 !py-4">
+            Start the Diagnostic →
+          </Link>
         </Chapter>
 
         <Chapter id="ch8" top="576vh" align="center">
@@ -444,11 +444,11 @@ export default function ScaleSage() {
               </div>
               <div>
                 <div className="eyebrow mb-3 !text-fog/40">Contact</div>
-                <p className="text-fog/70">midas@scalesage.ai</p>
+                <a href="mailto:midas@scalesage.ai" className="text-fog/70 hover:text-teal transition">midas@scalesage.ai</a>
               </div>
             </div>
             <p className="text-center mt-12" style={{ fontSize: 11, color: 'rgba(241,245,249,0.3)' }} suppressHydrationWarning>
-              © 2026 ScaleSage. Registered in England & Wales. [Legal Entity TBC] | midas@scalesage.ai | [Registered Address TBC]
+              © 2026 ScaleSage. All rights reserved. | <a href="mailto:midas@scalesage.ai" style={{ color: 'inherit' }}>midas@scalesage.ai</a>
             </p>
           </div>
         </Chapter>
