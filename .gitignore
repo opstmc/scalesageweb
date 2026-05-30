@@ -1,37 +1,18 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
+# See https://help.dev/cli for more information.
+.DS_Store
 dist
 dist-ssr
 .output
-.vinxi
-.tanstack/**
-.nitro
+node_modules
 *.local
-
-# Wrangler / Cloudflare
-.wrangler/
 .dev.vars
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.wrangler
 
 # local env (keep secrets out of git)
 .env
-.env.*
+.env.local
+.env.*.local
+# .env.production holds only the PUBLIC build-time VITE_SAGE_API_URL (baked into
+# client JS anyway), so it is committed for deterministic CI builds.
+!.env.production
 !.env.example
